@@ -7,10 +7,13 @@
 #include <iostream>
 
 Game::Game()
-  : mWindow(sf::VideoMode(640, 480), "SFML Application"), mPlayer() {
-  mPlayer.setRadius(40.f);
+  : mWindow(sf::VideoMode(640, 480), "SFML Application"), mTexture(), mPlayer() {
+  if (!mTexture.loadFromFile("Media/Textures/Eagle.png")) {
+    //handle error better
+    std::cout << "Error loading texture" << std::endl;
+  }
+  mPlayer.setTexture(mTexture);
   mPlayer.setPosition(100.f, 100.f);
-  mPlayer.setFillColor(sf::Color::Cyan);
 }
 
 void Game::run() {

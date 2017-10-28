@@ -5,9 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 
-const float PlayerSpeed = 100.f;
-const sf::Time TimePerFrame = sf::seconds(1.f / 30.f);
-
 class Game {
 public:
   Game();
@@ -20,9 +17,14 @@ private:
   void handlePlayerInput(sf::Keyboard::Key, bool);
   
 private:
-  sf::RenderWindow mWindow;
-  sf::CircleShape mPlayer;
+  const float PlayerSpeed = 100.f;
+  const sf::Time TimePerFrame = sf::seconds(1.f / 30.f);
 
+  
+  sf::RenderWindow mWindow;
+  sf::Texture mTexture;
+  sf::Sprite mPlayer;
+  
   bool mIsMovingUp;
   bool mIsMovingDown;
   bool mIsMovingLeft;
