@@ -4,6 +4,7 @@
 #define AIRCRAFT_H
 
 #include "Entity.h"
+#include "ResourceIdentifiers.h"
 
 class Aircraft : public Entity {
  public:

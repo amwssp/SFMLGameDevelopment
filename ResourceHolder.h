@@ -1,7 +1,7 @@
-//TextureHolder.h
+//ResourceHolder.h
 
-#ifndef TEXTUREHOLDER_H
-#define TEXTUREHOLDER_H
+#ifndef RESOURCEHOLDER_H
+#define RESOURCEHOLDER_H
 
 #include <cassert>
 #include <map>
@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <SFML/Graphics.hpp>
 
-#include "Textures.h"
+#include "ResourceIdentifiers.h"
 
 template <typename Resource, typename Identifier>
 class ResourceHolder {
