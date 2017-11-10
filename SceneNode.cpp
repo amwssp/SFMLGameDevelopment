@@ -33,3 +33,15 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const {
   for (const Ptr& child : mChildren)
     child->draw(target, states);
 }
+
+void SceneNode::update(sf::Time dt) {
+  updateCurrent(dt);
+  updateChildren(dt);
+}
+
+void SceneNode::updateCurrent(sf::Time dt) {}
+
+void SceneNode::updateChildren(sf::Time dt) {
+  for (Ptr& child :mChildren)
+    child->update(dt);
+}
