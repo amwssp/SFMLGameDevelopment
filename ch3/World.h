@@ -10,7 +10,6 @@
 #include "SpriteNode.h"
 
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
 #include <array>
 
 class World : private sf::NonCopyable {
