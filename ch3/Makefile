@@ -21,3 +21,6 @@ SpriteNode.o: SpriteNode.h SpriteNode.cpp
 
 World.o: World.h World.cpp
 	g++ -c -std=c++11 World.cpp
+
+Clean:
+	rm -rf *.o *~ game
