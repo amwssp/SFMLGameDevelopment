@@ -18,16 +18,29 @@ World::World(sf::RenderWindow& window) :
 
 void World::update(sf::Time dt) {
   mWorldView.move(0.f, mScrollSpeed * dt.asSeconds());
+  mPlayerAircraft->setVelocity(0.f, 0.f);
 
-  sf::Vector2f position = mPlayerAircraft->getPosition();
+  while (!mCommandQueue.isEmpty())
+    mSceneGraph.onCommand(mCommandQueue.pop(), dt);
+
   sf::Vector2f velocity = mPlayerAircraft->getVelocity();
 
-  if (position.x <= mWorldBounds.left + 150 ||
-      position.x >= mWorldBounds.left + mWorldBounds.width + 150) {
-    velocity.x = -velocity.x;
-    mPlayerAircraft->setVelocity(velocity);
-  }
+  if (velocity.x != 0.f && velocity.y != 0.f)
+    mPlayerAircraft->setVelocity(velocity / std::sqrt(2.f));
+
+  mPlayerAircraft->accelerate(0.f, mScrollSpeed);
+
   mSceneGraph.update(dt);
+
+  sf::FloatRect viewBounds(mWorldView.getCenter() - mWorldView.getSize() / 2.f, mWorldView.getSize());
+  const float borderDistance = 40.f;
+
+  sf::Vector2f position = mPlayerAircraft->getPosition();
+  position.x = std::max(position.x, viewBounds.left + borderDistance);
+  position.x = std::min(position.x, viewBounds.left + viewBounds.width - borderDistance);
+  position.y = std::max(position.y, viewBounds.top + borderDistance);
+  position.y = std::min(position.y, viewBounds.top + viewBounds.height - borderDistance);
+  mPlayerAircraft->setPosition(position);
 }
 
 void World::draw() {
@@ -35,6 +48,9 @@ void World::draw() {
   mWindow.draw(mSceneGraph);
 }
 
+CommandQueue& World::getCommandQueue() {
+  return mCommandQueue;
+}
 
 void World::loadTextures() {
   mTextures.load(Textures::Eagle, "Media/Textures/Eagle.png");

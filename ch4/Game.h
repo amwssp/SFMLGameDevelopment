@@ -3,6 +3,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Player.h"
 #include "World.h"
 
 #include <SFML/Window.hpp>
@@ -15,7 +16,7 @@ class Game : private sf::NonCopyable {
   void run();
 
  private:
-  void processEvents();
+  void processInput();
   void update(sf::Time elapsedTime);
   void render();
 
@@ -24,6 +25,7 @@ class Game : private sf::NonCopyable {
 
   sf::RenderWindow mWindow;
   World mWorld;
+  Player mPlayer;
   
 };
 

@@ -4,6 +4,7 @@
 #define WORLD_H
 
 #include "Aircraft.h"
+#include "CommandQueue.h"
 #include "ResourceHolder.h"
 #include "ResourceIdentifiers.h"
 #include "SceneNode.h"
@@ -17,6 +18,8 @@ class World : private sf::NonCopyable {
   explicit World(sf::RenderWindow& window);
   void update(sf::Time dt);
   void draw();
+
+  CommandQueue& getCommandQueue();
 
  private:
   void loadTextures();
@@ -32,6 +35,8 @@ class World : private sf::NonCopyable {
   SceneNode mSceneGraph;
   std::array<SceneNode*, LayerCount> mSceneLayers;
 
+  CommandQueue mCommandQueue;
+  
   sf::FloatRect mWorldBounds;
   sf::Vector2f mSpawnPosition;
   float mScrollSpeed;

@@ -1,3 +1,6 @@
+#ifndef TYPE_H
+#define TYPE_H
+
 namespace Category {
   enum Type {
     None           = 0,
@@ -7,3 +10,5 @@ namespace Category {
     EnemyAircraft  = 1 << 3,
   };
 }
+
+#endif
