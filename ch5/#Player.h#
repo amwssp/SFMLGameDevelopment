@@ -1,0 +1,19 @@
+//Player.h
+
+#ifndef PLAYER_H
+#define PLAYER_H
+
+#include "Command.h"
+#include "CommandQueue.h"
+
+class Player {
+ public:
+  enum Action { MoveLeft, MoveRight, MoveUp, MoveDown };
+
+ public:
+  void assignKey(Action action, sf::Keyboard::Key key);
+  void handleEvent(const sf::Event& event, CommandQueue& commands);
+  void handleRealtimeInput(CommandQueue& commands);
+};
+
+#endif
